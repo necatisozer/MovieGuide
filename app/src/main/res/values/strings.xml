@@ -13,4 +13,9 @@
     <string name="newest">Newest</string>
     <string name="highest_rated">Highest Rated</string>
     <string name="most_popular">Most Popular</string>
+    <string name="licence_key_title">Licence Key</string>
+    <string name="licence_key_hint">Enter your licence key</string>
+    <string name="licence_key_success_title">Success</string>
+    <string name="licence_key_success_message">The licence key has been applied!</string>
+    <string name="licence_key_error_message">Invalid licence key</string>
 </resources>

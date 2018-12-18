@@ -19,7 +19,7 @@ import com.esoxjem.movieguide.movies.Constants
 import com.esoxjem.movieguide.movies.entities.Movie
 import com.esoxjem.movieguide.movies.sorting.SortingDialogFragment
 import kotlinx.android.synthetic.main.fragment_movies.*
-import java.util.ArrayList
+import java.util.*
 import javax.inject.Inject
 
 class MoviesListingFragment : Fragment(), MovieListingContract.View {
@@ -56,6 +56,7 @@ class MoviesListingFragment : Fragment(), MovieListingContract.View {
             movies_listing.visibility = View.VISIBLE
         } else {
             moviesPresenter.setView(this)
+            //LicenceDialogFragment.newInstance().show(fragmentManager,"Licence Dialog")
         }
     }
 
