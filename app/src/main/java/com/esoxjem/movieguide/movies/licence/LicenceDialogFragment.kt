@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import com.esoxjem.movieguide.BaseApplication
 import com.esoxjem.movieguide.R
-import kotlinx.android.synthetic.main.dialog_licence.*
+import kotlinx.android.synthetic.main.dialog_licence.view.*
 import javax.inject.Inject
 
 /**
@@ -19,6 +19,8 @@ class LicenceDialogFragment : DialogFragment(), LicenceContract.View {
 
     @Inject
     lateinit var presenter: LicenceContract.Presenter
+
+    lateinit var dialogView: View
 
     companion object {
         fun newInstance(): LicenceDialogFragment {
@@ -35,7 +37,7 @@ class LicenceDialogFragment : DialogFragment(), LicenceContract.View {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val inflater = activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_licence, null)
+        dialogView = inflater.inflate(R.layout.dialog_licence, null)
 
         val dialog = Dialog(activity)
         return dialog.apply {
@@ -45,15 +47,15 @@ class LicenceDialogFragment : DialogFragment(), LicenceContract.View {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initViews()
     }
 
     private fun initViews() {
         presenter.checkAuthentication()
-        licence_key_confirm_button.setOnClickListener {
-            presenter.checkLicenceKey(licence_key_input_edit_text.text.toString())
+        dialogView.licence_key_confirm_button.setOnClickListener {
+            presenter.checkLicenceKey(dialogView.licence_key_input_edit_text.text.toString())
         }
     }
 
@@ -75,7 +77,7 @@ class LicenceDialogFragment : DialogFragment(), LicenceContract.View {
     }
 
     override fun showError() {
-        licence_key_input_edit_text.setError(getString(R.string.licence_key_error_message))
+        dialogView.licence_key_input_edit_text.setError(getString(R.string.licence_key_error_message))
     }
 
     override fun onDestroyView() {
